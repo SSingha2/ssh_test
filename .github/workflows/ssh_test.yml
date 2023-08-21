@@ -1,4 +1,4 @@
-name: SSH into Server
+name: SSH to Server
 
 on:
   push:
@@ -13,18 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-
       - name: SSH into Server
         run: |
-          ssh vagrant@${{ secrets.HOST }} 'echo Hello from GitHub Workflow!'
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh vagrant@192.168.10.13 'echo Hello from GitHub Actions!'
         env:
-          SERVER_ADDRESS: ${{ secrets.HOST }}
-        continue-on-error: true
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
