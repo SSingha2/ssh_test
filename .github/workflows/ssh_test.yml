@@ -25,4 +25,4 @@ jobs:
 
       - name: SSH into Server
         run: |
-          ssh -o StrictHostKeyChecking=no username@${{ secrets.SERVER_SSH_HOST }} 'echo Hello from GitHub Actions!' 
+          ssh -o StrictHostKeyChecking=no vagrant@${{ secrets.SERVER_SSH_HOST }} 'echo Hello from GitHub Actions!' 
