@@ -24,7 +24,7 @@ jobs:
 
       - name: SSH into Server
         run: |
-          ssh username@${{ secrets.SERVER_ADDRESS }} 'echo Hello from GitHub Workflow!'
+          ssh ${{ secrets.HOST }} 'echo Hello from GitHub Workflow!'
         env:
           SERVER_ADDRESS: ${{ secrets.HOST }}
         continue-on-error: true
