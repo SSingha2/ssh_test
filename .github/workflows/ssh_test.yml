@@ -19,6 +19,5 @@ jobs:
           host: ${{ inputs.SERVER_ADDRESS }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
           script: | 
             echo "Nice Job!!!"
