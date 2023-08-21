@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: print out example job
-        uses: appleboy/ssh-action@v0.1.10
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ inputs.SERVER_ADDRESS }}
           username: ${{ secrets.SSH_USERNAME }}
