@@ -15,6 +15,5 @@ jobs:
 
       - name: SSH into Server
         run: |
-          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh vagrant@192.168.10.13 'echo Hello from GitHub Actions!'
-        env:
-          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+          sshpass -p '${{ secrets.SSH_PASSWORD }}' ssh vagrant@192.168.10.13 
+          echo "Hello from GitHub Actions!"
