@@ -15,5 +15,5 @@ jobs:
 
       - name: SSH into Server
         run: |
-          sshpass -p '${{ secrets.SSH_PASSWORD }}' ssh vagrant@192.168.10.13 
+          sshpass -p '${{ secrets.SSH_PASSWORD }}' ssh -o StrictHostKeyChecking=no vagrant@192.168.10.13 
           echo "Hello from GitHub Actions!"
