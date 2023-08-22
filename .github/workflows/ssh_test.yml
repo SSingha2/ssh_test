@@ -6,14 +6,21 @@ on:
       - main
 
 jobs:
-  ssh:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: install ssh keys
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.5
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: SSH into AWS Instance
       run: |
-        install -m 600 -D /dev/null ~/.ssh/id_rsa
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        ssh-keyscan -H ${{ secrets.SERVER_ADDRESS }} > ~/.ssh/known_hosts
-    - name: connect and pull
-      run: ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.SERVER_ADDRESS }} echo " Hello World !"
+        ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SERVER_ADDRESS }}
+        echo "Hello World!"
+        touch testfile.txt
+        # Add your commands to execute on the EC2 instance here
