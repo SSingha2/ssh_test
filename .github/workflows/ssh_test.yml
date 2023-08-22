@@ -22,7 +22,5 @@ jobs:
           
       - name: SSH into Server
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SERVER_ADDRESS }} 'echo Hello from GitHub Actions!'
-        env:
-          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
-          SERVER_ADDRESS: ${{ secrets.SERVER_ADDRESS }}
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SERVER_ADDRESS }} 
+          echo 'Hello from GitHub Actions!'
