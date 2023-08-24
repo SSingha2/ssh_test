@@ -21,4 +21,4 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
-          echo "Hello world!" > /home/vagrant/gittext.txt
+          echo "Hello world!" > /home/ubuntu/gittext.txt
